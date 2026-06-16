@@ -147,7 +147,7 @@
     .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent); }
 
     /* Section base */
-    section { padding: 7rem 0; }
+    section { padding: 7rem 0; width: 100%; clear: both; }
     .section-label {
       font-size: 0.75rem;
       letter-spacing: 0.14em;
@@ -172,18 +172,20 @@
     }
     .about-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.9; margin-bottom: 1rem; }
 
-    /* Projects */
+    /* Projects Grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
-      margin-bottom: 3.5rem;
     }
     .project-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 2rem;
-      transition: border-color 0.2s, transform 0.2s;
+      padding: 2.5rem;
+      transition: border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .project-card:hover {
       border-color: var(--accent);
@@ -192,13 +194,20 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
     }
     .project-title {
       font-family: var(--font-display);
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 500;
       color: var(--text);
+    }
+    .project-links-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.4rem;
     }
     .project-link {
       font-size: 0.85rem;
@@ -206,6 +215,7 @@
       text-decoration: none;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      white-space: nowrap;
       border-bottom: 1px solid transparent;
       transition: border-color 0.2s;
     }
@@ -215,38 +225,82 @@
     .project-desc {
       color: var(--muted);
       font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
+      margin-bottom: 2rem;
+      line-height: 1.7;
     }
+    
+    /* Project Meta / Metrics */
+    .project-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding: 1rem 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 1.5rem;
+    }
+    .meta-item {
+      text-align: left;
+    }
+    .meta-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .meta-value {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-top: 0.2rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .project-tag {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.03);
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--border);
+    }
+
+    /* Plugin List for Sketchup */
     .plugin-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.04);
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
     .plugin-item {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
+      gap: 1rem;
     }
     .plugin-emoji {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       line-height: 1.4;
     }
     .plugin-details code {
       font-family: monospace;
       color: var(--accent);
       background: rgba(200,240,96,0.06);
-      padding: 0.1rem 0.4rem;
+      padding: 0.2rem 0.5rem;
       border-radius: 3px;
       font-size: 0.85rem;
     }
     .plugin-details p {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--muted);
-      margin-top: 0.25rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
     }
 
     /* Skills */
@@ -321,8 +375,14 @@
     /* Divider */
     .divider { width: 40px; height: 1px; background: var(--accent); margin: 2rem 0; }
 
+    @media (max-width: 768px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 640px) {
       .nav-links { display: none; }
+      .project-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .project-links-group { align-items: flex-start; }
     }
   </style>
 </head>
@@ -386,28 +446,70 @@
       <div class="projects-grid">
         
         <div class="project-card">
-          <div class="project-header">
-            <h3 class="project-title">Sketchup-Plugins</h3>
-            <a href="https://github.com/angieoppenheimer/sketchup-plugins" target="_blank" rel="noopener" class="project-link">View Repository →</a>
+          <div>
+            <div class="project-header">
+              <h3 class="project-title">Voice Parkinson Diagnosis</h3>
+              <div class="project-links-group">
+                <a href="https://github.com/angieoppenheimer/diagnosing-parkinson-through-voice" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+                <a href="https://doi.org/10.5281/zenodo.15870821" target="_blank" rel="noopener" class="project-link">Zenodo DOI →</a>
+              </div>
+            </div>
+            <p class="project-desc">A machine learning pipeline diagnosing Parkinson's Disease from 22 distinct vocal biomarkers. Features an optimized Random Forest architecture converted to TensorFlow Lite for real-world mobile healthcare integration. Officially donated to <em>Cure Parkinson's Trust</em>.</p>
           </div>
-          <p class="project-desc">A collection of automated utilities and plugins designed to optimize workflows, clean assets, and manage resources efficiently within SketchUp.</p>
           
-          <ul class="plugin-list">
-            <li class="plugin-item">
-              <span class="plugin-emoji">🫏</span>
-              <div class="plugin-details">
-                <code>auto_material_manager.rb</code>
-                <p>Helps you remove unnamed materials, detect duplicate materials, and export a structured materials report as a TXT file.</p>
+          <div>
+            <div class="project-meta-grid">
+              <div class="meta-item">
+                <div class="meta-label">Accuracy</div>
+                <div class="meta-value">92%</div>
               </div>
-            </li>
-            <li class="plugin-item">
-              <span class="plugin-emoji">🦓</span>
-              <div class="plugin-details">
-                <code>auto_components_manager.rb</code>
-                <p>Helps you remove unused components, detect duplicate components, and export a components report as a TXT file.</p>
+              <div class="meta-item">
+                <div class="meta-label">Recall</div>
+                <div class="meta-value">97%</div>
               </div>
-            </li>
-          </ul>
+              <div class="meta-item">
+                <div class="meta-label">AUC-ROC</div>
+                <div class="meta-value">0.96</div>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Random Forest</span>
+              <span class="project-tag">TensorFlow Lite</span>
+              <span class="project-tag">GridSearchCV</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <div class="project-header">
+              <h3 class="project-title">Sketchup-Plugins</h3>
+              <div class="project-links-group">
+                <a href="https://github.com/angieoppenheimer/sketchup-plugins" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+              </div>
+            </div>
+            <p class="project-desc">A collection of automated utilities and ruby plugins designed to optimize asset weight, handle resource leaks, clean unnamed materials, and generate structured reports within SketchUp ecosystems.</p>
+          </div>
+          
+          <div>
+            <ul class="plugin-list">
+              <li class="plugin-item">
+                <span class="plugin-emoji">🫏</span>
+                <div class="plugin-details">
+                  <code>auto_material_manager.rb</code>
+                  <p>Removes unnamed assets, flags texture duplicates, and exports textual audits.</p>
+                </div>
+              </li>
+              <li class="plugin-item">
+                <span class="plugin-emoji">🦓</span>
+                <div class="plugin-details">
+                  <code>auto_components_manager.rb</code>
+                  <p>Garbage-collects unused instances and maps duplicated geo hierarchies.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
 
       </div>
@@ -425,6 +527,7 @@
         <div class="skill-item"><div class="skill-name">C# / C</div><div class="skill-category">Programming Language</div></div>
         <div class="skill-item"><div class="skill-name">Java</div><div class="skill-category">Programming Language</div></div>
         <div class="skill-item"><div class="skill-name">JavaScript</div><div class="skill-category">Programming Language</div></div>
+        <div class="skill-item"><div class="skill-name">Ruby</div><div class="skill-category">Programming Language</div></div>
         <div class="skill-item"><div class="skill-name">HTML / SQL</div><div class="skill-category">Programming & Markup</div></div>
         <div class="skill-item"><div class="skill-name">.NET / Swift</div><div class="skill-category">Framework & Language</div></div>
         <div class="skill-item"><div class="skill-name">MATLAB / Flutter / Jinja</div><div class="skill-category">Languages & Templating</div></div>
