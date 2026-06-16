@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👩‍🚀​​</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👩‍🚀</text></svg>">
   <title>Angela Rossi — Computer Scientist & Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -172,6 +172,83 @@
     }
     .about-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.9; margin-bottom: 1rem; }
 
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 3.5rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+    }
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .project-link {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .project-link:hover {
+      border-bottom-color: var(--accent);
+    }
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .plugin-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .plugin-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .plugin-emoji {
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+    .plugin-details code {
+      font-family: monospace;
+      color: var(--accent);
+      background: rgba(200,240,96,0.06);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.85rem;
+    }
+    .plugin-details p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
     /* Skills */
     .skills-subcategory {
       font-family: var(--font-display);
@@ -254,19 +331,18 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
 
-  <!-- Nav -->
   <nav>
     <div class="container">
       <a href="#hero" class="nav-logo">AR</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero -->
   <section id="hero" style="position:relative;">
     <div class="container">
       <h1 class="hero-name">
@@ -286,7 +362,6 @@
     </div>
   </section>
 
-  <!-- About -->
   <section id="about">
     <div class="container">
       <div class="section-label">01 — About</div>
@@ -305,12 +380,44 @@
     </div>
   </section>
 
-  <!-- Skills -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label">02 — Projects</div>
+      <div class="projects-grid">
+        
+        <div class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">Sketchup-Plugins</h3>
+            <a href="https://github.com/angieoppenheimer/sketchup-plugins" target="_blank" rel="noopener" class="project-link">View Repository →</a>
+          </div>
+          <p class="project-desc">A collection of automated utilities and plugins designed to optimize workflows, clean assets, and manage resources efficiently within SketchUp.</p>
+          
+          <ul class="plugin-list">
+            <li class="plugin-item">
+              <span class="plugin-emoji">🫏</span>
+              <div class="plugin-details">
+                <code>auto_material_manager.rb</code>
+                <p>Helps you remove unnamed materials, detect duplicate materials, and export a structured materials report as a TXT file.</p>
+              </div>
+            </li>
+            <li class="plugin-item">
+              <span class="plugin-emoji">🦓</span>
+              <div class="plugin-details">
+                <code>auto_components_manager.rb</code>
+                <p>Helps you remove unused components, detect duplicate components, and export a components report as a TXT file.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section id="skills">
     <div class="container">
-      <div class="section-label">02 — Tech Stack</div>
+      <div class="section-label">03 — Tech Stack</div>
 
-      <!-- Programming Languages -->
       <div class="skills-subcategory">Programming Languages</div>
       <div class="skills-grid">
         <div class="skill-item"><div class="skill-name">Python</div><div class="skill-category">Programming Language</div></div>
@@ -323,7 +430,6 @@
         <div class="skill-item"><div class="skill-name">MATLAB / Flutter / Jinja</div><div class="skill-category">Languages & Templating</div></div>
       </div>
 
-      <!-- Specialties -->
       <div class="skills-subcategory">Specialties</div>
       <div class="skills-grid">
         <div class="skill-item"><div class="skill-name">AI & Machine Learning</div><div class="skill-category">Specialty</div></div>
@@ -336,7 +442,6 @@
         <div class="skill-item"><div class="skill-name">Music Technology</div><div class="skill-category">Specialty</div></div>
       </div>
 
-      <!-- Tools & Frameworks -->
       <div class="skills-subcategory">Tools & Frameworks</div>
       <div class="skills-grid">
         <div class="skill-item"><div class="skill-name">Unity</div><div class="skill-category">Tool</div></div>
@@ -347,7 +452,6 @@
         <div class="skill-item"><div class="skill-name">Plesk</div><div class="skill-category">Tool</div></div>
       </div>
 
-      <!-- Languages -->
       <div class="skills-subcategory">Languages</div>
       <div class="skills-grid">
         <div class="skill-item"><div class="skill-name">🇮🇹 Italian</div><div class="skill-category">Native Speaker</div></div>
@@ -358,10 +462,9 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact">
     <div class="container">
-      <div class="section-label">03 — Contact</div>
+      <div class="section-label">04 — Contact</div>
       <div class="contact-inner">
         <h2>Let's connect<br>.</h2>
         <a href="mailto:thebizarrechronicle@gmail.com" class="contact-email">thebizarrechronicle@gmail.com</a>
@@ -372,7 +475,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <p>Made with ❤</p>
