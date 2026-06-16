@@ -95,28 +95,20 @@
       align-items: center;
       padding-top: 6rem;
     }
-    .hero-tag {
-      display: inline-block;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
     .hero-name {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-size: clamp(3.5rem, 10vw, 7.5rem);
       font-weight: 600;
       line-height: 0.95;
       letter-spacing: -0.035em;
       color: var(--text);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
     .hero-name span { color: var(--accent); }
     .hero-desc {
       font-size: 1.05rem;
       color: var(--muted);
-      max-width: 520px;
+      max-width: 540px;
       line-height: 1.8;
       margin-bottom: 2.5rem;
     }
@@ -168,7 +160,7 @@
     .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
     /* About */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-layout { max-width: 680px; }
     .about-text h2 {
       font-family: var(--font-display);
       font-size: clamp(2rem, 4vw, 2.8rem);
@@ -178,21 +170,6 @@
       margin-bottom: 1.5rem;
     }
     .about-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.9; margin-bottom: 1rem; }
-    .about-stats { display: flex; flex-direction: column; gap: 1.5rem; padding-top: 1rem; }
-    .stat {
-      padding: 1.5rem;
-      border: 1px solid var(--border);
-      background: var(--surface);
-    }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 2.5rem;
-      font-weight: 600;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-    .stat-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; }
 
     /* Skills */
     .skills-subcategory {
@@ -267,7 +244,6 @@
     .divider { width: 40px; height: 1px; background: var(--accent); margin: 2rem 0; }
 
     @media (max-width: 640px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .nav-links { display: none; }
     }
   </style>
@@ -277,6 +253,7 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
 
+  <!-- Nav -->
   <nav>
     <div class="container">
       <a href="#hero" class="nav-logo">AR</a>
@@ -288,16 +265,15 @@
     </div>
   </nav>
 
+  <!-- Hero -->
   <section id="hero" style="position:relative;">
     <div class="container">
-      <div class="hero-tag">Available for work ✦</div>
       <h1 class="hero-name">
         Angela<br>
-        <span>Rossi</span><br>
-        Developer.
+        <span>Rossi</span>
       </h1>
       <p class="hero-desc">
-        Creo esperienze digitali con codice pulito e design intenzionale. Full-stack developer con base a Milano.
+        I build high-integrity digital experiences through structured, efficient code and intentional architecture.
       </p>
       <a href="#contact" class="hero-cta">
         Get in touch <span class="arrow">→</span>
@@ -309,12 +285,13 @@
     </div>
   </section>
 
+  <!-- About -->
   <section id="about">
     <div class="container">
       <div class="section-label">01 — About</div>
-      <div class="about-grid">
+      <div class="about-layout">
         <div class="about-text">
-          <h2>Costruisco cose<br>per il web.</h2>
+          <h2>Designing resilient systems.</h2>
           <div class="divider"></div>
           <p>
             I am a Computer Scientist and Engineer currently working as an Automations Engineer in Italy.
@@ -323,28 +300,16 @@
             When I am not working I do LeetCode, I go jogging, and I hang out with my dog.
           </p>
         </div>
-        <div class="about-stats">
-          <div class="stat">
-            <div class="stat-num">3+</div>
-            <div class="stat-label">Anni di esperienza</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">24</div>
-            <div class="stat-label">Progetti completati</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Clienti soddisfatti</div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
+  <!-- Skills -->
   <section id="skills">
     <div class="container">
       <div class="section-label">02 — Tech Stack</div>
 
+      <!-- Programming Languages -->
       <div class="skills-subcategory">Programming Languages</div>
       <div class="skills-grid">
         <div class="skill-item"><div class="skill-name">Python</div><div class="skill-category">Programming Language</div></div>
@@ -357,6 +322,7 @@
         <div class="skill-item"><div class="skill-name">MATLAB / Flutter / Jinja</div><div class="skill-category">Languages & Templating</div></div>
       </div>
 
+      <!-- Specialties -->
       <div class="skills-subcategory">Specialties</div>
       <div class="skills-grid">
         <div class="skill-item"><div class="skill-name">AI & Machine Learning</div><div class="skill-category">Specialty</div></div>
@@ -369,6 +335,7 @@
         <div class="skill-item"><div class="skill-name">Music Technology</div><div class="skill-category">Specialty</div></div>
       </div>
 
+      <!-- Tools & Frameworks -->
       <div class="skills-subcategory">Tools & Frameworks</div>
       <div class="skills-grid">
         <div class="skill-item"><div class="skill-name">Unity</div><div class="skill-category">Tool</div></div>
@@ -379,21 +346,23 @@
         <div class="skill-item"><div class="skill-name">Plesk</div><div class="skill-category">Tool</div></div>
       </div>
 
+      <!-- Languages -->
       <div class="skills-subcategory">Languages</div>
       <div class="skills-grid">
-        <div class="skill-item"><div class="skill-name">🇮🇹 Italian</div><div class="skill-category">Native</div></div>
-        <div class="skill-item"><div class="skill-name">🇬🇧 English</div><div class="skill-category">C2 — Cambridge Proficiency (In progress)</div></div>
+        <div class="skill-item"><div class="skill-name">🇮🇹 Italian</div><div class="skill-category">Native Speaker</div></div>
+        <div class="skill-item"><div class="skill-name">🇬🇧 English</div><div class="skill-category">C2 — Professional (In progress)</div></div>
         <div class="skill-item"><div class="skill-name">🇪🇸 Spanish</div><div class="skill-category">C1 Professional Working</div></div>
       </div>
 
     </div>
   </section>
 
+  <!-- Contact -->
   <section id="contact">
     <div class="container">
       <div class="section-label">03 — Contact</div>
       <div class="contact-inner">
-        <h2>Contacts<br>.</h2>
+        <h2>Let's connect<br>.</h2>
         <a href="mailto:thebizarrechronicle@gmail.com" class="contact-email">thebizarrechronicle@gmail.com</a>
         <div class="contact-social">
           <a href="https://github.com/angieoppenheimer" target="_blank" rel="noopener">GitHub</a>
@@ -402,6 +371,7 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="container">
       <p>Made with ❤</p>
